@@ -27,22 +27,16 @@ String  command =""; // Command received from Android device
 // Set Relay Pins
 int relay1 = 14;
 int relay2 = 15;
-int relay3 = 3;
-int relay4 = 1;
 
 void setup()
 {
   Serial.begin(115200);
 
   pinMode(relay1, OUTPUT); 
-  pinMode(relay2, OUTPUT);  
-  pinMode(relay3, OUTPUT);  
-  pinMode(relay4, OUTPUT);  
+  pinMode(relay2, OUTPUT);    
 
   digitalWrite(relay1,HIGH);
   digitalWrite(relay2,HIGH);
-  digitalWrite(relay3,HIGH);
-  digitalWrite(relay4,HIGH);
       
   connectWiFi();
   server.begin();
@@ -58,23 +52,15 @@ void loop()
     else if (command == "r1off" || command == "desligar 1" || command == "desligar um")     digitalWrite(relay1,HIGH);
     else if (command == "r2on"  || command == "ligar 2"    || command == "ligar dois")      digitalWrite(relay2,LOW);     
     else if (command == "r2off" || command == "desligar 2" || command == "desligar dois")   digitalWrite(relay2,HIGH);
-    else if (command == "r3on"  || command == "ligar 3"    || command == "ligar tres")      digitalWrite(relay3,LOW);
-    else if (command == "r3off" || command == "desligar 3" || command == "desligar tres")   digitalWrite(relay3,HIGH);
-    else if (command == "r4on"  || command == "ligar 4"    || command == "ligar quatro")    digitalWrite(relay4,LOW);
-    else if (command == "r4off" || command == "desligar 4" || command == "desligar quatro") digitalWrite(relay4,HIGH);
     else if (command == "allon" || command == "ligar tudo" || command == "ligar todos") 
     {
       digitalWrite(relay1,LOW);
       digitalWrite(relay2,LOW);
-      digitalWrite(relay3,LOW);
-      digitalWrite(relay4,LOW);
     }
     else if (command == "alloff" || command == "desligar tudo" || command == "desligar todos") 
     {
       digitalWrite(relay1,HIGH);
       digitalWrite(relay2,HIGH);
-      digitalWrite(relay3,HIGH);
-      digitalWrite(relay4,HIGH);
     }
     sendBackEcho(command); // send command echo back to android device
     command = "";
